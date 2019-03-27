@@ -65,10 +65,6 @@ To run the project, go into the folder `Runner` and execute the following comman
 dotnet run
 ```
 
-## Links
-
-* 💬 Chat (mainly in Polish language): [Slack](https://join.slack.com/t/coyotenetcore/shared_invite/enQtNTg3NDQ5NzA5OTcyLTNlYWU1YmY1Yjg0Yzc2MDFjMzU3NTZkNjIzNDdkODE1NGE5NTQwZDA4Y2UyMWRkOWMyZGJkYmIzZTlkYjA5OWE) (invitation to the this project's `coyotenetcore` workspace)
-
 ## Technologies this project is built with
 
 * Web framework: [ASP.NET Core 2.2](https://docs.microsoft.com/pl-pl/aspnet/core/?view=aspnetcore-2.2).
@@ -76,6 +72,6 @@ dotnet run
 
 ## Contributors
 
-If you want, you may contribute making [issues](https://github.com/dotNETSanta/Coyote.NETCore/issues) or [pull requests]() to this project.
+If you want, you may contribute making [issues](https://github.com/dotNETSanta/Coyote.NETCore/issues) or [pull requests](https://github.com/CoyoteNET/CoyoteNET-frontend/pulls) to this project.
 
 Thank you to all our [contributors](https://github.com/dotNETSanta/Coyote.NETCore/graphs/contributors)!
