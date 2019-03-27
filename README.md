@@ -1,3 +1,5 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/h1d6acaw26ch2t8v?svg=true)](https://ci.appveyor.com/project/dotNETSanta/coyotenet-frontend)
+
 # Coyote.NETCore [CoyoteNET Organization](https://github.com/CoyoteNET)
 
 [Coyote.NETCore Backend](https://github.com/dotNETSanta/Coyote.NETCore)
