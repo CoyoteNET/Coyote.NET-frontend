@@ -74,8 +74,14 @@ dotnet run
 * Web framework: [ASP.NET Core 2.2](https://docs.microsoft.com/pl-pl/aspnet/core/?view=aspnetcore-2.2).
 * ORM: [EntityFrameworkCore](https://github.com/aspnet/EntityFrameworkCore).
 
-## Contributors
+## Contributing to the project
 
-If you want, you may contribute making [issues](https://github.com/dotNETSanta/Coyote.NETCore/issues) or [pull requests](https://github.com/CoyoteNET/CoyoteNET-frontend/pulls) to this project.
+If you want, you may contribute either by making [issues](https://github.com/CoyoteNET/CoyoteNET-frontend/issues) or [pull requests](https://github.com/CoyoteNET/CoyoteNET-frontend/pulls) to this project.
 
-Thank you to all our [contributors](https://github.com/dotNETSanta/Coyote.NETCore/graphs/contributors)!
+However, before contributing it is hight advisable that you read the [CoyoteNET project contribution rules](https://github.com/CoyoteNET/CoyoteNET-frontend/wiki/CoyoteNET-project-contribution-rules).
+
+Thank you to all our [contributors](https://github.com/CoyoteNET/CoyoteNET-frontend/graphs/contributors)!
+
+## Will this document change?
+
+This README document may be changed at any time.
