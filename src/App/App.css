@@ -1,0 +1,27 @@
+.header-top{
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAJ0lEQVQIW2Ps3MD5n0+AlQEEPn34zcA4/QDffxADBEASmALIWkCqAPDNEnJoA/jxAAAAAElFTkSuQmCC);
+  border-bottom: 1px solid #888;
+  height: 5px;
+}
+
+.header{
+  background: url(/assets/background/background.png) repeat;
+  border-bottom: 1px solid #e2e2e2;
+  height:50px;
+}
+
+.footer{
+  background-color: #3e3e3e;
+  color: #969696;
+  height:100px;
+  width:100%;
+}
+
+.category{
+  box-shadow: inset 1px 1px #fff;
+  background-color: #e2e7e1;
+  border: 1px solid #c7c7c7;
+  margin:5px;
+  padding:10px;
+  min-height:100px;
+}
