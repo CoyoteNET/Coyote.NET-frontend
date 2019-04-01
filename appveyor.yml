@@ -1,0 +1,10 @@
+
+install:
+  - npm install
+
+test_script:
+  - npm i react-scripts test
+
+build_script:
+  - yarn build
+  - npm i react-scripts
