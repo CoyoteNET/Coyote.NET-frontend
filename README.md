@@ -2,7 +2,7 @@
 
 Everybody who forked, downloaded or cloned this repository should be aware that the repository name has changed – and therefore also its URL has changed. The current are: name – `CoyoteNET-frontend`, URL – `https://github.com/CoyoteNET/CoyoteNET-frontend`. According to GitHub, all necessary changes in **local repository copies** should be performed automatically; nonetheless, it is strongly recommended to **manually** update local repository copies. For details, see https://help.github.com/en/articles/renaming-a-repository.
 
-[![Build status](https://ci.appveyor.com/api/projects/status/h1d6acaw26ch2t8v?svg=true)](https://ci.appveyor.com/project/dotNETSanta/coyotenet-frontend)
+[![Build status](https://ci.appveyor.com/api/projects/status/bqvdp8s8xn6tthlj?svg=true)](https://ci.appveyor.com/project/CoyoteNET/coyotenet-frontend)
 
 # Coyote.NETCore [CoyoteNET Organization](https://github.com/CoyoteNET)
 
