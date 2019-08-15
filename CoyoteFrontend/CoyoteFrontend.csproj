@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CoyoteNETCore.Shared">
+      <HintPath>..\..\Coyote.NETCore\Coyote\CoyoteNETCore.Shared\bin\Debug\netstandard2.0\CoyoteNETCore.Shared.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

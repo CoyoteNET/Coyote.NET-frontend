@@ -1,9 +1,3 @@
-install:
-  - yarn install
-
-test_script:
-  - yarn test
-
 build_script:
-  - yarn build
-  - echo test
+  - cd CoyoteFrontend
+  - dotnet build

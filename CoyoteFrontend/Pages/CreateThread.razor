@@ -1,0 +1,86 @@
+﻿@page "/CreateThread"
+
+@using CoyoteFrontend.Data
+@using CoyoteNETCore.Shared.RequestInput;
+@using CoyoteNETCore.Shared.ResultHandling;
+
+@inject Service _service
+
+    <div>
+        <label>@string.Join(Environment.NewLine, Errors)</label>
+        <br />
+        <label>Title:</label>
+        <input type="text" @bind="Title" />
+        <br />
+        <label>Body:</label>
+        <textarea @bind="@Body"></textarea>
+        <label>Tags:</label>
+        <input type="text" @bind="Tags" />   
+        <label>Category:</label>
+        <input type="number" @bind="ThreadCategoryId" />
+        <br />
+
+        <button @onclick="TryCreateThread">Sign in!</button>
+    </div>
+
+@code {
+    public string Title { get; set; }
+    public string Body { get; set; }
+    public string Tags { get; set; }
+    public int ThreadCategoryId { get; set; }
+    public List<string> Errors { get; set; } = new List<string>();
+
+    async Task TryCreateThread()
+    {
+        Errors.Clear();
+        var result = VerifyReuqest();
+
+        if (!result.IsSucceeded)
+        {
+            Errors = result.Error.ErrorMessages.ToList();
+            return;
+        }
+
+        var response = await _service.TryPOST<CreateThreadInput, Result<int>>(new CreateThreadInput(Body, Title, Tags, ThreadCategoryId), "/api/v1/Thread/", FakeLocalStorage.Token);
+
+        if (!response.IsSucceeded)
+        {
+            Errors.AddRange(response.Error.ErrorMessages);
+        }
+        else
+        {
+            if (!response.Value.IsSucceeded)
+            {
+                Errors.AddRange(response.Value.Error.ErrorMessages);
+            }
+            else
+            {
+                Errors.Add($"Your thread with an id '{response.Value.Value}' has been created!");
+            }
+        }
+
+        this.StateHasChanged();
+    }
+
+    Result<bool> VerifyReuqest()
+    {
+        var _errors = new List<string>();
+
+        if (string.IsNullOrWhiteSpace(Title))
+        {
+            _errors.Add("Title cannot be empty.");
+        }
+
+        if (string.IsNullOrWhiteSpace(Body))
+        {
+            _errors.Add("Content cannot be empty.");
+        }
+
+        if (string.IsNullOrWhiteSpace(Tags))
+        {
+            _errors.Add("Tags cannot be empty.");
+        }
+
+        return _errors.Any() ? new Result<bool>(ErrorType.BadRequest, _errors) : new Result<bool>(true);
+    }
+}

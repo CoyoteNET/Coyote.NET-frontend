@@ -1,0 +1,84 @@
+﻿@page "/Register"
+
+@using CoyoteFrontend.Data
+@using CoyoteNETCore.Shared.RequestInput;
+@using System.Text.RegularExpressions;
+@using CoyoteNETCore.Shared.ResultHandling;
+@using CoyoteNETCore.Shared.Auth;
+@using CoyoteNETCore.Shared.Extensions;
+
+@inject Service _service
+
+<div>
+    <label>@string.Join(Environment.NewLine, Errors)</label>
+    <br />
+    <label>Username:</label>
+    <input type="text" @bind="Username" />
+    <br />
+    <label>Email:</label>
+    <input type="text" @bind="Email" />
+    <br />
+    <label>Password:</label>
+    <input type="password" @bind="Password1" />
+    <br />
+    <label>Password Repeated:</label>
+    <input type="password" @bind="Password2" />
+    <br />
+    <button @onclick="TryRegister">Register!</button>
+
+</div>
+
+@code {
+    public string Username { get; set; }
+    public string Email { get; set; }
+    public string Password1 { get; set; }
+    public string Password2 { get; set; }
+    public List<string> Errors { get; set; } = new List<string>();
+
+    async Task TryRegister()
+    {
+        Errors.Clear();
+        var result = VerifyReuqest();
+
+        if (!result.IsSucceeded)
+        {
+            Errors = result.Error.ErrorMessages.ToList();
+            return;
+        }
+
+        var response = await _service.TryPOST<RegisterInput, JsonWebToken>(new RegisterInput(Username, Email, Password1), "/Account/Register/");
+
+        if (!response.IsSucceeded)
+            Errors.AddRange(response.Error.ErrorMessages);
+        else
+        {
+            FakeLocalStorage.Token = response.Value.Token;
+            FakeLocalStorage.ExpiresAt = response.Value.Expires.FromUnixTime();
+            FakeLocalStorage.Username = response.Value.Username;
+            Errors.Add("Your account has been successfully registered!");
+        }
+    }
+
+    Result<bool> VerifyReuqest()
+    {
+        var _errors = new List<string>();
+        if (string.IsNullOrWhiteSpace(Username))
+        {
+            _errors.Add("Username cannot be empty.");
+        }
+
+        Regex regex = new Regex(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$");
+
+        if (string.IsNullOrWhiteSpace(Email) || !regex.Match(Email).Success)
+        {
+            _errors.Add("Email is invalid.");
+        }
+
+        if (Password1 != Password2)
+        {
+            _errors.Add("Passwords are not equal.");
+        }
+
+        return _errors.Any() ? new Result<bool>(ErrorType.BadRequest, _errors) : new Result<bool>(true);
+    }
+}
