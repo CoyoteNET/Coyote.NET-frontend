@@ -1,5 +1,56 @@
 ﻿@page "/"
 
-<h1>Hello, world!</h1>
+@using CoyoteNETCore.Shared.ResultHandling;
+@using CoyoteNETCore.Shared.DTOs
+@using CoyoteFrontend.Data
 
-Welcome to your new app.
+@inject Service _service
+
+
+<h1>Latest threads:</h1>
+
+
+@if (Threads.Count == 0)
+{
+    <p>There are no threads yet :(</p>
+}
+else
+{
+    <hr />
+    foreach (var thread in Threads)
+    {
+        <label>@thread.Title - @thread.Posts.Count() replies</label>
+        <br />
+        foreach (var post in thread.Posts)
+        {
+            <label>@($"{post.Content} by {post.Author.Username}")</label>
+        }
+        <hr />
+    }
+}
+
+@code{
+    public List<ThreadDTO> Threads { get; set; } = new List<ThreadDTO>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadThreads();
+    }
+
+    async Task LoadThreads()
+    {
+        Threads.Clear();
+
+        var result = await _service.TryGET<Result<List<ThreadDTO>>>("/api/v1/Thread/");
+
+        if (result.IsSucceeded)
+        {
+            if (result.Value.IsSucceeded)
+            {
+                Threads = result.Value.Value ?? new List<ThreadDTO>();
+            }
+        }
+
+        this.StateHasChanged();
+    }
+}

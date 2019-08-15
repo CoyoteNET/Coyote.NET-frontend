@@ -1,0 +1,73 @@
+﻿@page "/Login"
+
+@using CoyoteFrontend.Data
+@using CoyoteNETCore.Shared.RequestInput;
+@using CoyoteNETCore.Shared.ResultHandling;
+@using CoyoteNETCore.Shared.Auth;
+@using CoyoteNETCore.Shared.Extensions;
+
+@inject Service _service
+
+<div>
+    <label>@string.Join(Environment.NewLine, Errors)</label>
+    <br />
+    <label>Username:</label>
+    <input type="text" @bind="Username" />
+    <br />
+    <label>Password:</label>
+    <input type="password" @bind="Password" />
+    <br />
+
+    <button @onclick="TryLogin">Sign in!</button>
+</div>
+
+@code {
+    public string Username { get; set; }
+    public string Password { get; set; }
+    public List<string> Errors { get; set; } = new List<string>();
+
+    async Task TryLogin()
+    {
+        Errors.Clear();
+        var result = VerifyReuqest();
+
+        if (!result.IsSucceeded)
+        {
+            Errors = result.Error.ErrorMessages.ToList();
+            return;
+        }
+
+        var response = await _service.TryPOST<LoginInput, JsonWebToken>(new LoginInput(Username, Password), "/Account/Login/");
+
+        if (!response.IsSucceeded)
+        {
+            Errors.AddRange(response.Error.ErrorMessages);
+        }
+        else
+        {
+            FakeLocalStorage.Token = response.Value.Token;
+            FakeLocalStorage.ExpiresAt = response.Value.Expires.FromUnixTime();
+            FakeLocalStorage.Username = response.Value.Username;
+            Errors.Add("Successfully logged in");
+        }
+
+        this.StateHasChanged();
+    }
+
+    Result<bool> VerifyReuqest()
+    {
+        var _errors = new List<string>();
+
+        if (string.IsNullOrWhiteSpace(Username))
+        {
+            _errors.Add("Username cannot be empty.");
+        }
+
+        if (string.IsNullOrWhiteSpace(Password))
+        {
+            _errors.Add("Password cannot be empty.");
+        }
+
+        return _errors.Any() ? new Result<bool>(ErrorType.BadRequest, _errors) : new Result<bool>(true);
+    }
+}

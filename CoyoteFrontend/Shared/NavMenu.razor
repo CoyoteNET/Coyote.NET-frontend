@@ -1,5 +1,5 @@
 ﻿<div class="top-row pl-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">CoyoteFrontend</a>
+    <a class="navbar-brand" href="">CoyoteFrontend - @FakeLocalStorage.Username</a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,8 +13,18 @@
             </NavLink>
         </li>
         <li class="nav-item px-3">
+            <NavLink class="nav-link" href="Login">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Login
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
             <NavLink class="nav-link" href="Register">
                 <span class="oi oi-list-rich" aria-hidden="true"></span> Register
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="CreateThread">
+                <span class="oi oi-home" aria-hidden="true"></span> Create Thread
             </NavLink>
         </li>
     </ul>
