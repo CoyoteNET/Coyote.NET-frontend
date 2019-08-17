@@ -1,0 +1,16 @@
+﻿[
+  {
+    "inputFile": "Styles/shared.scss",
+    "outputFile": "wwwroot/css/shared.css",
+    "minify": { "enabled": true },
+    "includeInProject": true,
+    "options": { "sourceMap": true }
+  },
+  {
+    "inputFile": "Styles/login.scss",
+    "outputFile": "wwwroot/css/login.css",
+    "minify": { "enabled": true },
+    "includeInProject": true,
+    "options": { "sourceMap": true }
+  }
+]

@@ -1,0 +1,108 @@
+$debug: false;
+
+#loginform {
+    display: grid;
+    grid-template-areas: 
+        ".. errormessage errormessage errormessage errormessage .." 
+        ".. info info info .. .." 
+        ".. username_input username_input username_input  signin_button signin_button" 
+        ".. password_input password_input password_input  signin_button signin_button"
+        ".. .. .. .. .. .." 
+        ".. create_account create_account forgot_password forgot_password ..";
+
+    grid-template-rows: 70px 30px 30px 30px 10px 45px;
+    grid-template-columns: 15px 60px 60px 60px 60px 60px 40%;
+
+    grid-gap: 10px;
+
+    #info {
+        grid-area: info;
+    }
+
+    #errormessage {
+        grid-area: errormessage;
+        color: red;
+        font-weight: bold;
+        overflow: auto;
+
+        @if $debug {
+            background-color: saddlebrown;
+        }
+    }
+
+    #username_input {
+        grid-area: username_input;
+
+        @if $debug {
+            background-color: orange;
+        }
+    }
+
+    #password_input {
+        grid-area: password_input;
+
+        @if $debug {
+            background-color: blue;
+        }
+    }
+
+    #forgot_password {
+        grid-area: forgot_password;
+    }
+
+    #create_account {
+        grid-area: create_account;
+    }
+
+    // Credits: https://fvsch.com/styling-buttons/
+    button {
+        padding: 0;
+        border: none;
+        font: inherit;
+        color: inherit;
+        background-color: transparent;
+        cursor: pointer;
+    }
+
+    #signin_button {
+        grid-area: signin_button;
+        display: grid;
+        grid-template-columns: 30% 70%;
+        grid-template-rows: 100%;
+        grid-template-areas: ".. signin_button";
+
+        @if $debug {
+            background-color: mediumpurple;
+        }
+
+        display: inline-block;
+        text-align: center;
+        text-decoration: none;
+        /* create a small space when buttons wrap on 2 lines */
+        margin: 2px 0;
+        /* invisible border (will be colored on hover/focus) */
+        border: solid 1px transparent;
+        border-radius: 4px;
+        /* button size comes from text + padding, avoid height */
+        padding: 0.5em 1em;
+        /* make sure colors have enough contrast! */
+        color: #FFFFFF;
+        background-color: #9555AF;
+    }
+
+    #signin_button:active {
+        transform: translateY(1px);
+        filter: saturate(150%);
+    }
+
+    #signin_button:active {
+        color: #9050AA;
+        border-color: currentColor;
+        background-color: white;
+    }
+
+    #signin_button:focus {
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(255, 105, 180, 0.5), 0 0 0 1.5px rgba(255, 105, 180, 0.5);
+    }
+}

@@ -8,17 +8,18 @@
 
 @inject Service _service
 
-<div>
-    <label>@string.Join(Environment.NewLine, Errors)</label>
-    <br />
-    <label>Username:</label>
-    <input type="text" @bind="Username" />
-    <br />
-    <label>Password:</label>
-    <input type="password" @bind="Password" />
-    <br />
 
-    <button @onclick="TryLogin">Sign in!</button>
+<link rel="stylesheet" href="/css/login.min.css">
+
+<div id="loginform">
+    <label id="errormessage">@string.Join(Environment.NewLine, Errors)</label>
+    <b id="info">Sign in!</b>
+    <input id="username_input" type="text" placeholder="Username..." @bind="Username" />
+
+    <input id="password_input" type="password" placeholder="Password..." @bind="Password" />
+    <a href="#" id="forgot_password">Forgot Password</a>
+    <a href="Register" id="create_account">Create Account</a>
+    <button id="signin_button" @onclick="TryLogin">Sign in!</button>
 </div>
 
 @code {
