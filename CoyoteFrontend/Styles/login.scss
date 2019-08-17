@@ -17,6 +17,10 @@ $debug: false;
 
     #info {
         grid-area: info;
+
+        @if $debug {
+            background-color: gold;
+        }
     }
 
     #errormessage {
@@ -48,10 +52,18 @@ $debug: false;
 
     #forgot_password {
         grid-area: forgot_password;
+               
+        @if $debug {
+            background-color: darkslategrey;
+        }
     }
 
     #create_account {
         grid-area: create_account;
+
+        @if $debug {
+            background-color: slateblue;
+        }
     }
 
     // Credits: https://fvsch.com/styling-buttons/
@@ -74,6 +86,10 @@ $debug: false;
         @if $debug {
             background-color: mediumpurple;
         }
+        @else
+        {
+            background-color: #9555AF;
+        }
 
         display: inline-block;
         text-align: center;
@@ -87,7 +103,6 @@ $debug: false;
         padding: 0.5em 1em;
         /* make sure colors have enough contrast! */
         color: #FFFFFF;
-        background-color: #9555AF;
     }
 
     #signin_button:active {
@@ -97,7 +112,6 @@ $debug: false;
 
     #signin_button:active {
         color: #9050AA;
-        border-color: currentColor;
         background-color: white;
     }
 
